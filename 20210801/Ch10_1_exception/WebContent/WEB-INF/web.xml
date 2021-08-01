@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+		<error-page>
+			<error-code>405</error-code>
+		    <location>/error</location>		
+		</error-page>
+		<error-page>
+			<error-code>404</error-code>
+		    <location>/error</location>		
+		</error-page>
+	<!-- 處裡特別的錯誤  會多javax.servlet.error.exception參數-->
+		<error-page>
+			<exception-type>tw.com.exception.MyException</exception-type>
+			 <location>/myexception</location>	
+		</error-page>
+</web-app>
