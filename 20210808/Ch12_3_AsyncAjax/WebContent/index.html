@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+
+		function testAsync(){
+			let msgObj = document.
+			getElementById("msg");
+			msgObj.innerText = "等待中!";
+			fetch("page1",{method:"get"}).
+			then(resp=>{
+				return resp.text();
+			}).then(text=>{
+				msgObj.innerText=text;
+			});
+		}
+
+</script>
+
+</head>
+<body>
+<button type="button" onclick="testAsync()">確定</button>
+<div id="msg"></div>
+</body>
+</html>

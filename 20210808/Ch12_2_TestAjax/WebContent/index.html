@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登入</title>
+
+<script>
+		function sendAccAndPass(){
+			console.log("Test!!!");
+			let account = document.getElementById("accountId").value;
+			let password = document.getElementById("passwordId").value;		
+			let msg = document.getElementById("msg")
+			fetch(`login?account=${account}&password=${password}`,
+					{method:"get"}).then(resp=>{						
+						return resp.text();
+					}).then(text=>{
+						console.log(text);	
+						msg.innerText = text;
+					}).catch(error=>{
+						console.error(error);						
+					});
+			}
+		function sendAccAndPassPost(){
+			console.log("Test!!!");
+			let account = document.getElementById("accountId").value;
+			let password = document.getElementById("passwordId").value;		
+			let msg = document.getElementById("msg")
+			const params = new URLSearchParams(`account=${account}&password=${password}`);
+			fetch("loginJson",{body:params,method:"post"}).then(resp=>{				
+				return resp.json();
+			}).then(json=>{
+				console.log(json);	
+				if (json.isLogin){
+					document.location.href = json.location
+				}else{
+					msg.innerText = json.msg
+				}				
+			}).catch(error=>{				
+				console.error(error);
+			});
+		}
+	
+</script>
+</head>
+<body>
+		
+			<input id="accountId" placeholder="帳號">
+			<input type="password" id="passwordId" placeholder="密碼">			
+			<button type="button" onclick="sendAccAndPass()">確定</button>		
+			<button type="button" onclick="sendAccAndPassPost()">確定Json</button>	
+			<div id="msg"></div>	
+</body>
+</html>
